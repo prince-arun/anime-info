@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AnimeContext } from "../context/global";
+import { AnimeContext } from "../context/context";
 
 const Sidebar = () => {
   const { popularAnime } = AnimeContext();
