@@ -281,7 +281,12 @@ body::-webkit-scrollbar-track {
 /* Global Styles */
 .animeItem {
   padding: 3rem 18rem;
-  background-color: #ededed;
+
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(176, 229, 208, 1) 42%,
+    rgba(92, 202, 238, 0.41) 93.6%
+  );
 }
 
 .animeItem h1 {
@@ -289,7 +294,7 @@ body::-webkit-scrollbar-track {
   font-size: 3rem;
   margin-bottom: 1.5rem;
   cursor: pointer;
-  background: linear-gradient(to right, #a855f7, #27ae60);
+  background: linear-gradient(to right, #2248f0, #f3d21a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.4s ease-in-out;
@@ -304,7 +309,7 @@ body::-webkit-scrollbar-track {
   margin: 3rem 0;
   font-size: 2rem;
   cursor: pointer;
-  background: linear-gradient(to right, #a855f7 23%, #27ae60);
+  background: linear-gradient(to right, #230ee0 23%, #e7e421);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -321,7 +326,7 @@ body::-webkit-scrollbar-track {
   outline: none;
   cursor: pointer;
   font-size: 1.2rem;
-  color: #27ae60;
+  color: #e7c248;
   font-weight: 600;
 }
 
@@ -340,10 +345,11 @@ body::-webkit-scrollbar-track {
 }
 
 .animeItem .details {
-  background-color: #fff;
+  background-color: #deedf7;
   border-radius: 20px;
   padding: 2rem;
   border: 5px solid #e5e7eb;
+  box-shadow: 7px -7px 5px gray;
 }
 
 .animeItem .details .detail {
@@ -359,6 +365,7 @@ body::-webkit-scrollbar-track {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 30px;
 }
 
 .animeItem .details .anime-details p {
@@ -373,8 +380,8 @@ body::-webkit-scrollbar-track {
 
 .animeItem .characters {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 3rem;
   background-color: #fff;
   padding: 2rem;
   border-radius: 20px;
