@@ -5,12 +5,10 @@ import { Link, useParams } from "react-router-dom";
 const SingleItem = () => {
   const { id } = useParams();
 
-  //state
   const [anime, setAnime] = useState({});
   const [characters, setCharacters] = useState([]);
   const [showMore, setShowMore] = useState(false);
 
-  //destructure anime
   const {
     title,
     synopsis,
@@ -28,14 +26,12 @@ const SingleItem = () => {
     source,
   } = anime;
 
-  //get anime based on id
   const getAnime = async (anime) => {
     const response = await fetch(`https://api.jikan.moe/v4/anime/${anime}`);
     const obj = await response.json();
     setAnime(obj.data);
   };
 
-  //get characters
   const getCharacters = async (anime) => {
     const response = await fetch(
       `https://api.jikan.moe/v4/anime/${anime}/characters`
@@ -44,14 +40,13 @@ const SingleItem = () => {
     setCharacters(obj.data);
   };
 
-  //initial render
   useEffect(() => {
     getAnime(id);
     getCharacters(id);
   }, []);
   return (
     <div className="animeItem">
-      <h1>{title}</h1>
+      <h1>Anime : {title}</h1>
       <div className="details">
         <div className="detail">
           <div className="image">
@@ -59,9 +54,30 @@ const SingleItem = () => {
           </div>
           <div className="anime-details">
             <p>
+              <span>Title:</span>
+              <span>{title}</span>
+            </p>
+            <p>
+              <span>Duration:</span>
+              <span>{duration}</span>
+            </p>
+            <p>
+              <span>Season:</span>
+              <span>{season}</span>
+            </p>
+            <p>
               <span>Aired:</span>
               <span>{aired?.string}</span>
             </p>
+            <p>
+              <span>Source:</span>
+              <span>{source}</span>
+            </p>
+            <p>
+              <span>Status:</span>
+              <span>{status}</span>
+            </p>
+
             <p>
               <span>Rating:</span>
               <span>{rating}</span>
@@ -81,22 +97,6 @@ const SingleItem = () => {
             <p>
               <span>Popularity:</span>
               <span>{popularity}</span>
-            </p>
-            <p>
-              <span>Status:</span>
-              <span>{status}</span>
-            </p>
-            <p>
-              <span>Source:</span>
-              <span>{source}</span>
-            </p>
-            <p>
-              <span>Season:</span>
-              <span>{season}</span>
-            </p>
-            <p>
-              <span>Duration:</span>
-              <span>{duration}</span>
             </p>
           </div>
         </div>
@@ -121,6 +121,7 @@ const SingleItem = () => {
             height="450"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            mute
           ></iframe>
         ) : (
           <h3>Trailer not available</h3>
