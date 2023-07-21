@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AnimeContext } from "../context/global";
+import { AnimeContext } from "../context/context";
 import Popular from "./Popular";
 import Upcoming from "./Upcoming";
 import Airing from "./Airing";
