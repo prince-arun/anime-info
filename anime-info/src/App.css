@@ -1,7 +1,5 @@
-/* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +14,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* Custom Scrollbar Styles (for WebKit-based browsers) */
 body::-webkit-scrollbar {
   width: 7px;
 }
@@ -31,7 +28,7 @@ body::-webkit-scrollbar-track {
 }
 
 /* --------Home page------------------------- */
-/* Global Styles */
+
 .homepage {
   background-color: #f5c55e;
 }
@@ -43,7 +40,6 @@ body::-webkit-scrollbar-track {
   transition: all 0.4s ease-in-out;
 }
 
-/* Responsive styles for header */
 @media screen and (max-width: 1530px) {
   .homepage header {
     width: 95%;
@@ -110,7 +106,6 @@ body::-webkit-scrollbar-track {
 
 /* -----------side bar------------ */
 
-/* Global Styles */
 .sidebar {
   margin-top: 2rem;
   background-color: rgb(36, 36, 40);
@@ -146,7 +141,6 @@ body::-webkit-scrollbar-track {
 
 /* ----------upcoming---------- */
 
-/* Global Styles */
 .upcoming {
   display: flex;
 }
@@ -179,7 +173,7 @@ body::-webkit-scrollbar-track {
 }
 
 /* ----------------Popular------------ */
-/* Global Styles */
+
 .pop {
   display: flex;
 }
@@ -212,7 +206,7 @@ body::-webkit-scrollbar-track {
 }
 
 /* -------------Gallery--------------- */
-/* Global Styles */
+
 .gallery {
   background-color: #ededed;
   min-height: 100vh;
@@ -278,7 +272,7 @@ body::-webkit-scrollbar-track {
 }
 
 /* ---------anime item----------- */
-/* Global Styles */
+
 .animeItem {
   padding: 3rem 18rem;
   background-color: #f8ce73;
@@ -414,7 +408,7 @@ body::-webkit-scrollbar-track {
 }
 
 /* ------------------Airing------------- */
-/* Global Styles */
+
 .airing {
   display: flex;
 }

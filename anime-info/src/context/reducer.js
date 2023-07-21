@@ -1,4 +1,3 @@
-//actions
 const LOADING = "LOADING";
 const SEARCH = "SEARCH";
 const GET_POPULAR_ANIME = "GET_POPULAR_ANIME";
@@ -6,7 +5,6 @@ const GET_UPCOMING_ANIME = "GET_UPCOMING_ANIME";
 const GET_AIRING_ANIME = "GET_AIRING_ANIME";
 const GET_PICTURES = "GET_PICTURES";
 
-//reducer
 export const reducer = (state, action) => {
   switch (action.type) {
     case LOADING:

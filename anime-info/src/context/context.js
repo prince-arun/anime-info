@@ -19,7 +19,6 @@ const GET_AIRING_ANIME = "GET_AIRING_ANIME";
 const GET_PICTURES = "GET_PICTURES";
 
 export const ContextApi = ({ children }) => {
-  //intial state
   const defaultState = {
     popularAnime: [],
     upcomingAnime: [],
@@ -33,7 +32,6 @@ export const ContextApi = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
   const [search, setSearch] = useState("");
 
-  //handle change
   const handleChange = (e) => {
     setSearch(e.target.value);
     if (e.target.value === "") {
@@ -41,7 +39,6 @@ export const ContextApi = ({ children }) => {
     }
   };
 
-  //handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search) {
@@ -53,7 +50,6 @@ export const ContextApi = ({ children }) => {
     }
   };
 
-  //fetch popular anime
   const getPopularAnime = async () => {
     dispatch({ type: LOADING });
     const response = await fetch(`${fUrl}/top/anime?filter=bypopularity`);
@@ -61,7 +57,6 @@ export const ContextApi = ({ children }) => {
     dispatch({ type: GET_POPULAR_ANIME, payload: obj.data });
   };
 
-  //fetch upcoming anime
   const getUpcomingAnime = async () => {
     dispatch({ type: LOADING });
     const response = await fetch(`${fUrl}/top/anime?filter=upcoming`);
@@ -69,7 +64,6 @@ export const ContextApi = ({ children }) => {
     dispatch({ type: GET_UPCOMING_ANIME, payload: obj.data });
   };
 
-  //fetch airing anime
   const getAiringAnime = async () => {
     dispatch({ type: LOADING });
     const response = await fetch(`${fUrl}/top/anime?filter=airing`);
@@ -77,7 +71,6 @@ export const ContextApi = ({ children }) => {
     dispatch({ type: GET_AIRING_ANIME, payload: obj.data });
   };
 
-  //search anime
   const searchAnime = async (anime) => {
     dispatch({ type: LOADING });
     const response = await fetch(
@@ -87,7 +80,6 @@ export const ContextApi = ({ children }) => {
     dispatch({ type: SEARCH, payload: obj.data });
   };
 
-  //get anime pictures
   const getAnimePictures = async (id) => {
     dispatch({ type: LOADING });
     const response = await fetch(
@@ -97,7 +89,6 @@ export const ContextApi = ({ children }) => {
     dispatch({ type: GET_PICTURES, payload: obj.data });
   };
 
-  //initial render
   useEffect(() => {
     getPopularAnime();
   }, []);

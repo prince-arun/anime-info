@@ -7,7 +7,6 @@ const Template = () => {
   const { getAnimePictures, pictures } = AnimeContext();
   const { id } = useParams();
 
-  //state
   const [index, setIndex] = useState(0);
 
   const handleImageClick = (i) => {
