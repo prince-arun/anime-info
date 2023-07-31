@@ -19,7 +19,7 @@ const Template = () => {
   return (
     <div className="gallery">
       <div className="back">
-        <Link to="/">
+        <Link to="/home">
           <i className="fas fa-arrow-left"></i>
           Back to Home
         </Link>

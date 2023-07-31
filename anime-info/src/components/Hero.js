@@ -11,14 +11,57 @@ import anime_cover from "../assets/anime cover.jpg";
 import anime_cover_1 from "../assets/anime_cover_1.jpg";
 import anime_cover_2 from "../assets/anime_cover_2.jpg";
 import anime_cover_3 from "../assets/anime_cover_3.jpg";
+import { auth } from "../config/Config";
+import { db } from "../config/Config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   // ---------------------------Model States--------------------
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   //------------------------------------------------------------
+
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [age, setAge] = useState("");
+  const navigate = useNavigate();
+
+  let regUser = {
+    Username: userName,
+
+    Email: email,
+
+    Age: age,
+  };
+
+  const handleClose = async (e) => {
+    e.preventDefault();
+    if (userName !== "" && email !== "" && password !== "" && age !== "") {
+      try {
+        const userCredentials = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        ).then((success) => {
+          const id = success.user.uid;
+          console.log(regUser);
+          set(ref(db, "RegUser/" + id), regUser);
+          alert("User Created Successfully  ");
+          setShow(false);
+          navigate(`/signin/${id}`);
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      alert("Please fill all the Details");
+    }
+  };
   return (
     <div className="hero">
       {/* ------------------------------------Nav Bar------------------------------------ */}
@@ -30,11 +73,15 @@ const Hero = () => {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              <Button variant="primary" onClick={handleShow}>
+              <Button
+                variant="primary"
+                onClick={handleShow}
+                className="px-4 py-2"
+              >
                 Sign up
               </Button>
 
-              <Modal show={show} onHide={handleClose}>
+              <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>
                   <Modal.Title>Register...</Modal.Title>
                 </Modal.Header>
@@ -44,30 +91,75 @@ const Hero = () => {
                       className="mb-3"
                       controlId="exampleForm.ControlInput1"
                     >
+                      <Form.Label>Username</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="user name"
+                        autoFocus
+                        onChange={(e) => {
+                          setUserName(e.target.value);
+                        }}
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
                       <Form.Label>Email address</Form.Label>
                       <Form.Control
                         type="email"
                         placeholder="name@example.com"
                         autoFocus
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                     </Form.Group>
                     <Form.Group
                       className="mb-3"
-                      controlId="exampleForm.ControlTextarea1"
+                      controlId="exampleForm.ControlInput1"
                     >
-                      <Form.Label>Example textarea</Form.Label>
-                      <Form.Control as="textarea" rows={3} />
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Enter password"
+                        autoFocus
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                      />
                     </Form.Group>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Age</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter Age"
+                        autoFocus
+                        onChange={(e) => {
+                          setAge(e.target.value);
+                        }}
+                      />
+                    </Form.Group>
+
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      onClick={handleClose}
+                      className="px-4"
+                    >
+                      Register
+                    </Button>
+                    <Form.Label className="ms-3">
+                      Already have a user Account?{" "}
+                      <Link to={"/signin/:id"}>
+                        <span className="login-link ms-2">Log In</span>
+                      </Link>
+                    </Form.Label>
                   </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer>
               </Modal>
             </Navbar.Text>
           </Navbar.Collapse>
