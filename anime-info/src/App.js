@@ -4,10 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Homepage from "./components/Homepage";
 import SingleItem from "./components/SingleItem";
 import Template from "./components/Template";
+import Hero from "./components/Hero";
 
 function App() {
   return (
     <div className="App">
+      <Hero />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
